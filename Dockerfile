@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-ARG GRAFANA_VERSION
+ARG 3.1.1
 
 ENV GF_PATHS_DATA=/var/lib/grafana
 ENV GF_PATHS_LOGS=/var/log/grafana
