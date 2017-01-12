@@ -1,9 +1,5 @@
 FROM debian:jessie
 
-ENV GF_PATHS_DATA=/var/lib/grafana
-ENV GF_PATHS_LOGS=/var/log/grafana
-ENV GF_PATHS_PLUGINS=/var/lib/grafana/plugins
-
 RUN apt-get update && \
     apt-get -y --no-install-recommends install libfontconfig curl ca-certificates && \
     apt-get clean && \
@@ -15,11 +11,11 @@ RUN apt-get update && \
     apt-get remove -y curl && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* && \
-    chown -R grafana:0 "$GF_PATHS_DATA" "$GF_PATHS_LOGS" && \
+    chown -R grafana:0 /var/lib/grafana /var/log/grafana && \
     chown -R grafana:0 /etc/grafana && \
     chown -R grafana:0 /usr/share/grafana
 
-VOLUME ["$GF_PATHS_DATA", "$GF_PATHS_LOGS", "/etc/grafana"]
+VOLUME ["/var/lib/grafana", /var/log/grafana, "/etc/grafana"]
 
 EXPOSE 3000
 
