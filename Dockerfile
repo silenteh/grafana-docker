@@ -16,7 +16,8 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* && \
     chown -R grafana:0 "$GF_PATHS_DATA" "$GF_PATHS_LOGS" && \
-    chown -R grafana:0 /etc/grafana
+    chown -R grafana:0 /etc/grafana && \
+    chown -R grafana:0 /usr/share/grafana
 
 VOLUME ["$GF_PATHS_DATA", "$GF_PATHS_LOGS", "/etc/grafana"]
 
